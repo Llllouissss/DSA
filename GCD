@@ -1,0 +1,321 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <stdbool.h>
+int main()
+{
+    char num1[257],num2[257];
+    int sizen,sizem;
+    int n[257];
+    int m[257];
+    char x[257],y[257];
+    int rom[257];
+    int ram[257];
+    int rum[257];
+    int rpm[257];
+    int ans = 1;
+    int ren = 0;
+    int rem = 0;
+    int i =257;
+    int j = 0;
+    scanf("%s",num1);
+    scanf("%s",num2);
+    sizen = strlen(num1);
+    sizem = strlen(num2);
+    int len_n = sizen;
+    int len_m = sizem;
+    int ee = 0, qq =0,tt=0,cc = 0,dd,ll;
+
+    while(i>=sizen)
+    {
+        n[i]=0;
+        i--;
+    }
+
+    while(i>=0)
+    {
+        n[i] = num1[j] - '0';
+        i--;
+        j++;
+    }
+    i = 257;
+    j = 0;
+    while(i>=sizem)
+    {
+        m[i]=0;
+        i--;
+    }
+    while(i>=0)
+    {
+        m[i] = num2[j] - '0';
+        i--;
+        j++;
+    }
+
+    if(sizen>sizem)
+    {
+        int ram[257];
+        for(int rr=0;rr < 257;rr++)
+        {
+            qq = qq + n[rr];
+        }
+        if(qq != 0)
+        {
+            for(int h=0;h<257;h++)
+            {
+                ram[h] = n[h];
+                n[h] = m[h];
+                m[h] = ram[h];
+            }
+        }
+    }
+    else if(sizen == sizem)
+    {
+        for(int p = 256;p>=0;p--)
+        {
+            if(n[p]>m[p])
+            {
+                for(int rr=0;rr < 257;rr++)
+                    {
+                    tt = tt + n[rr];
+                }
+                if(tt != 0)
+                {
+                for(int h=0;h<257;h++)
+                {
+                    rom[h] = n[h];
+                    n[h] = m[h];
+                    m[h] = rom[h];
+                }
+                break;
+                }
+            }
+            else if(n[p]==m[p])
+            {
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    for(int oo = 0;oo<257;oo++)
+    {
+        ren = ren + n[oo];
+    }
+    for(int oo = 0;oo<257;oo++)
+    {
+        rem = rem + m[oo];
+    }
+    while(rem!=0&&ren!=0)
+        {
+        if(((n[0]%2)==0) && ((m[0]%2)==0))
+        {
+            ans = ans*2;
+            for(int tt = 256; tt >=0;tt--)
+            {
+                if(n[tt]%2 == 1)
+                {
+                    n[tt-1] = n[tt-1] + 10;
+                }
+                n[tt] = n[tt]/2;
+               
+            }
+            int r;
+            for(r =256;r>=0;r--)
+            {
+                if(m[r]%2 == 1)
+                {
+                    m[r-1] = m[r-1] + 10;
+                }
+                m[r] = m[r]/2;
+        }
+        }
+        else if(((n[0]%2) ==0 && m[0]%2==1))
+            {
+                for(int tt = 256; tt >=0;tt--)
+                {
+                    if(n[tt]%2 == 1)
+                    {
+                        n[tt-1] = n[tt-1] + 10;
+                    }
+                    n[tt] = n[tt]/2;
+                }
+            }
+        else if((m[0]%2 ==0 && (n[0]%2) ==1))
+            {
+                for(int tt = 256; tt >=0;tt--)
+                {
+                    if(m[tt]%2 == 1)
+                    {
+                        m[tt-1] = m[tt-1] + 10;
+                    }
+                    m[tt] = m[tt]/2;
+                }
+            }
+            
+            dd =256;
+                while(n[dd] == 0)
+                {
+                    dd--;
+                }
+                x[dd] = '\0';
+                dd--;
+                while(dd>=0)
+                {
+                    x[dd] = n[dd] + '0';
+                    dd--;
+                }
+                ll =256;
+                while(m[ll] == 0)
+                {
+                    ll--;
+                }
+                y[ll] = '\0';
+                ll--;
+                while(ll>=0)
+                {
+                    y[ll] = m[ll] + '0';
+                    ll--;
+                }
+                len_n = strlen(x)+1;
+                len_m = strlen(y)+1;
+            
+    if(len_n>len_m)
+        {
+            qq = 0;
+            for(int rr=0;rr < 257;rr++)
+            {
+                qq = qq + n[rr];
+            }
+            if(qq != 0)
+            {
+                for(int h=0;h<257;h++)
+                {
+                    rpm[h] = n[h];
+                    n[h] = m[h];
+                    m[h] = rpm[h];
+                }
+            }
+        }
+    else if(len_n == len_m)
+        {
+        for(int p = 256;p>=0;p--)
+        {
+            if(n[p]>m[p])
+            {
+        for(int h=256;h>=0;h--)
+        {
+            rum[h] = n[h];
+            n[h] = m[h];
+            m[h] = rum[h];
+        }
+        
+        break;
+            }
+    else if(n[p]<m[p])
+    {
+        break;
+    }
+}
+        }
+            for(int bb = 0; bb<257;bb++)
+                {
+                    m[bb] = m[bb] - n[bb];
+                    if(m[bb]<0)
+                    {
+                        m[bb]+=10;
+                        m[bb+1] = m[bb+1] - 1;
+                    }
+                }
+            
+                dd =256;
+                while(n[dd] == 0)
+                {
+                    dd--;
+                }
+                x[dd] = '\0';
+                dd--;
+                while(dd>=0)
+                {
+                    x[dd] = n[dd] + '0';
+                    dd--;
+                }
+                ll =256;
+                while(m[ll] == 0)
+                {
+                    ll--;
+                }
+                y[ll] = '\0';
+                ll--;
+                while(ll>=0)
+                {
+                    y[ll] = m[ll] + '0';
+                    ll--;
+                }
+                len_n = strlen(x)+1;
+                len_m = strlen(y)+1;
+                ren = 0;
+                rem = 0;
+            for(int ppp = 0;ppp<257;ppp++)
+                {
+                ren = ren + n[ppp];
+                rem = rem + m[ppp];
+                }
+                int o;
+                for(o = 256;o >0;o--)
+    {
+        if((n[o])!=0)
+        {
+            break;
+        }
+    }
+     while(o >= 0)
+     {
+         printf("%d",n[o]);
+         o--;
+     }
+     printf(" ");
+     for(o = 256;o >0;o--)
+    {
+        if((m[o])!=0)
+        {
+            break;
+        }
+    }
+     while(o >= 0)
+     {
+         printf("%d",m[o]);
+         o--;
+     }
+     printf("\n");
+        }
+
+    int sum[257];
+    for(int s = 0;s<257;s++)
+    {
+        sum[s] = n[s]*ans;
+    }
+    for(int s =0;s<257;s++)
+    {
+        sum[s+1] = sum[s]/10 + sum[s+1];
+        sum[s] = sum[s]%10;
+        
+    }
+    int o = 257;
+    for(o = 257;o >0;o--)
+    {
+        if((sum[o])!=0)
+        {
+            break;
+        }
+    }
+     while(o >= 0)
+     {
+         printf("%d",sum[o]);
+         o--;
+     }
+
+}
